@@ -9,19 +9,27 @@
       </el-form-item>
       <el-form-item prop="password">
         <span class="iconfont icon-lock"></span>
-        <el-input :type="showPwd ? '' : 'password'" v-model="loginForm.password" auto-complete="on" placeholder="请输入密码">
+        <el-input
+          :type="showPwd ? '' : 'password'"
+          v-model="loginForm.password"
+          auto-complete="on"
+          @keyup.enter.native="handleLogin"
+          placeholder="请输入密码">
         </el-input>
         <span @click="showPwd = !showPwd" :class="['showPwd','iconfont',showPwd ? 'icon-yanjing_kai':'icon-yanjing_bi']"></span>
       </el-form-item>
-        <el-button class="login-button" type="primary" @click.prevent="onSubmit">登录</el-button>
+        <el-button
+          class="login-button" :loading="loading" type="primary" @click.prevent="handleLogin">{{loading?'登陆中':'登录'}}</el-button>
     </el-form>
   </div>
 </template>
 
 <script>
 import v from '../../utils/validate.js'
+import loginApi from '../../service/login/login.js'
+import authentication from '../../utils/authentication.js'
 export default {
-  mixins: [v],
+  mixins: [v, loginApi, authentication],
   name: 'login',
   data () {
     // 验证用户名
@@ -43,15 +51,46 @@ export default {
         ],
         password: [
           { required: true, message: '请输入密码', trigger: 'blur' },
-          { min: 8, max: 30, message: '长度在 8 到 30 个字符', trigger: 'blur' }
+          { min: 6, max: 20, message: '长度在 6 到 20 个字符', trigger: 'blur' }
         ]
       },
-      showPwd: false
+      showPwd: false,
+      loading: false
     }
   },
   methods: {
-    onSubmit () {
-
+    handleLogin () {
+      this.$refs.loginForm.validate(valid => {
+        if (valid) {
+          this.loading = true
+          setTimeout(() => {
+            const username = this.loginForm.username.trim()
+            this.login(username, this.loginForm.password).then(
+              resdata => {
+                // 成功 cookies保存token token保存到store
+                console.log(resdata)
+                var data = JSON.parse(resdata)
+                if (data.status === 0) { // 0成功 1失败
+                  this.setToken(data.token)
+                  this.$store.commit('SET_IF_LOGIN', true)
+                  this.$router.push({path: '/'})
+                } else {
+                  // 错误提示
+                  this.$message.error('账号或者密码错误,请稍后重试!')
+                }
+                this.loading = false
+              }
+            ).catch(function (error) {
+              // 失败 网络请求失败那些
+              this.$message.error(error.message)
+              this.loading = false
+            })
+          }, 2000)
+        } else {
+          console.log('error submit')
+          return false
+        }
+      })
     }
   }
 }
@@ -74,6 +113,7 @@ export default {
         padding: 10px 5px 10px 15px;
         color: $light_gray;
         &:-webkit-autofill{
+          -webkit-border-radius: 0;
           -webkit-box-shadow: 0 0 0px 1000px $bg inset !important;
           -webkit-text-filll-color: #fff !important;
         }
@@ -126,6 +166,7 @@ export default {
       }
       .login-button{
         width: 100%;
+        padding: 10px 0;
       }
     }
   }

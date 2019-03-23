@@ -1,0 +1,92 @@
+[
+  {
+    "icon": "iconfont icon-dashboard",
+    "name": "主页",
+    "path": "/dashboard"
+  },
+  {
+    "icon": "iconfont icon-guide",
+    "name": "导航",
+    "path": "/guide"
+  },
+  {
+    "icon": "iconfont icon-auth",
+    "name": "权限",
+    "path": "/auth"
+  },
+  {
+    "icon": "iconfont icon-images",
+    "name": "图片",
+    "path": "/images"
+  },
+  {
+    "icon": "iconfont icon-practical",
+    "name": "实用工具",
+    "path": "/practical"
+  },
+  {
+    "icon": "iconfont icon-chart",
+    "name": "图表",
+    "path": "/chart"
+  },
+  {
+    "icon": "iconfont icon-table",
+    "name": "表格",
+    "path": "/table"
+  },
+  {
+    "icon": "iconfont icon-artical",
+    "name": "文章",
+    "path": "/artical",
+    "sub": [
+      {
+        "name": "文章列表",
+        "path": "/artical/list"
+      },
+      {
+        "name": "发表文章",
+        "path": "/artical/publish"
+      }
+    ]
+  },
+  {
+    "icon": "iconfont icon-tab",
+    "name": "页签",
+    "path": "/tab"
+  },
+  {
+    "icon": "iconfont icon-excel",
+    "name": "excel",
+    "path": "/excel"
+  },
+  {
+    "icon": "iconfont icon-errorpage",
+    "name": "错误页",
+    "path": "/errorpage",
+    "sub": [
+      {
+        "name": "404",
+        "path": "/errorpage/404"
+      },
+      {
+        "name": "501",
+        "path": "/errorpage/501"
+      }
+    ]
+  },
+  {
+    "icon": "iconfont icon-info",
+    "name": "个人中心",
+    "path": "/info",
+    "sub": [
+      {
+        "name": "个人信息",
+        "path": "/info/center"
+      },
+      {
+        "name": "安全认证",
+        "path": "/info/security"
+      }
+    ]
+  }
+]
