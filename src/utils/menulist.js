@@ -25,14 +25,32 @@ const menu = '[\n' +
   '    "path": "/practical"\n' +
   '  },\n' +
   '  {\n' +
-  '    "icon": "iconfont icon-chartoptions",\n' +
+  '    "icon": "iconfont icon-chart",\n' +
   '    "name": "图表",\n' +
-  '    "path": "/chartoptions"\n' +
+  '    "path": "/chart"\n' +
   '  },\n' +
   '  {\n' +
   '    "icon": "iconfont icon-table",\n' +
   '    "name": "表格",\n' +
-  '    "path": "/table"\n' +
+  '    "path": "/table",\n' +
+  '    "sub": [\n' +
+  '      {\n' +
+  '        "name": "动态表格",\n' +
+  '        "path": "/table/dyn"\n' +
+  '      },\n' +
+  '      {\n' +
+  '        "name": "拖拽表格",\n' +
+  '        "path": "/table/drag"\n' +
+  '      },\n' +
+  '      {\n' +
+  '        "name": "可编辑表格",\n' +
+  '        "path": "/table/edit"\n' +
+  '      },\n' +
+  '      {\n' +
+  '        "name": "综合表格",\n' +
+  '        "path": "/table/comprehensive"\n' +
+  '      }\n' +
+  '    ]\n' +
   '  },\n' +
   '  {\n' +
   '    "icon": "iconfont icon-artical",\n' +
@@ -89,7 +107,7 @@ const menu = '[\n' +
   '      }\n' +
   '    ]\n' +
   '  }\n' +
-  ']\n'
+  ']'
 const menulist = JSON.parse(menu)
 export default {
   data () {

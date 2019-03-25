@@ -41,6 +41,15 @@ export default {
         url: 'chartdata/products',
         method: 'get'
       })
+    },
+    getTableData (tag) {
+      return request({
+        url: 'tabledata',
+        method: 'get',
+        params: {
+          tag: tag
+        }
+      })
     }
   }
 }

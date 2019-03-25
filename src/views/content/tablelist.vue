@@ -1,5 +1,7 @@
 <template>
-    <div>表格</div>
+    <div class="tablelist">
+      <router-view></router-view>
+    </div>
 </template>
 
 <script>

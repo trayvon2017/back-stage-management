@@ -11,7 +11,8 @@ const url = {
   logout: baseUrl + '/logout',
   assement: baseUrl + '/chartdata/assement',
   flow: baseUrl + '/chartdata/flow',
-  products: baseUrl + '/chartdata/products'
+  products: baseUrl + '/chartdata/products',
+  table: baseUrl + '/tabledata'
 }
 export function initMock () {
   // 拦截登录
@@ -29,6 +30,7 @@ export function initMock () {
           data.status = 0
           data.message = '登录成功'
           data.token = Random.guid()
+          lu.username === 'admin' ? data.role = 'admin' : data.role = 'root'
           return true
         }
       })
@@ -127,5 +129,22 @@ export function initMock () {
     console.log('拦截器,products')
     console.log(data)
     return JSON.stringify(data)
+  })
+  Mock.mock(RegExp(url.table, 'i'), 'get', options => {
+    console.log(options)
+    var tag = options.url.split('=')[1]
+    console.log(tag)
+    switch (tag) {
+      case 'drag':
+        return Mock.mock({
+          'tabledata|10': [{
+            'id|+1': 1,
+            'name': '@cname',
+            'address': '@county(true)',
+            'phone': /^1[356789]\d{8}/,
+            'email': '@email'
+          }]
+        })
+    }
   })
 }

@@ -6,7 +6,7 @@ export default {
     token: '',
     name: '',
     avatar: '',
-    roles: [],
+    role: '',
     iflogin: false
   },
   mutations: {
@@ -19,8 +19,8 @@ export default {
     SET_AVATOR: (state, avatar) => {
       state.avatar = avatar
     },
-    SET_ROLES: (state, roles) => {
-      state.roles = roles
+    SET_ROLE: (state, role) => {
+      state.role = role
     },
     SET_IF_LOGIN: (state, iflogin) => {
       state.iflogin = iflogin

@@ -32,7 +32,25 @@
   {
     "icon": "iconfont icon-table",
     "name": "表格",
-    "path": "/table"
+    "path": "/table",
+    "sub": [
+      {
+        "name": "动态表格",
+        "path": "/table/dyn"
+      },
+      {
+        "name": "拖拽表格",
+        "path": "/table/drag"
+      },
+      {
+        "name": "可编辑表格",
+        "path": "/table/edit"
+      },
+      {
+        "name": "综合表格",
+        "path": "/table/comprehensive"
+      }
+    ]
   },
   {
     "icon": "iconfont icon-artical",

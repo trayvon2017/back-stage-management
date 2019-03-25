@@ -73,6 +73,7 @@ export default {
                 if (data.status === 0) { // 0成功 1失败
                   this.setToken(data.token)
                   this.$store.commit('SET_IF_LOGIN', true)
+                  this.$store.commit('SET_ROLE', data.role)
                   this.$router.push({path: '/'})
                 } else {
                   // 错误提示
